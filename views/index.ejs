@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Diary</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Personal Diary</h1>
+    <form action="/add" method="POST">
+      <textarea name="entryContent" placeholder="Write your diary entry here..." required></textarea>
+      <button type="submit">Add Entry</button>
+    </form>
+    <ul>
+      <% entries.forEach(entry => { %>
+        <li>
+          <strong><%= entry.date %>:</strong> <%= entry.content %>
+          <form action="/delete" method="POST" style="display:inline;">
+            <input type="hidden" name="entryId" value="<%= entry.id %>">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>
